@@ -14,4 +14,4 @@ if (typeof message === 'object' && typeof JSON === 'object') {
     }
 }
 
-Application.prototype.notify || (Application.prototype.notify = Notifications.notify)
+Application.prototype.notify || (Application.prototype.notify = Notifications.notify);
