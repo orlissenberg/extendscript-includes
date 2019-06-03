@@ -8,13 +8,14 @@ module.exports = function (grunt) {
             },
             dist: {
                 src: [
-                    'application-notifications.jsx',
-                    'array-indexof.jsx',
-                    'document-export-image.jsx',
-                    'dotenv.jsx',
-                    'json.jsx',
-                    'page-copy-items-to-document.jsx',
-                    'random.jsx'
+                    'src/application-notifications.jsx',
+                    'src/array-index-of.jsx',
+                    'src/document-export-image.jsx',
+                    'src/document-copy-metadata-to-export.jsx',
+                    'src/dotenv.jsx',
+                    'src/json.jsx',
+                    'src/page-copy-items-to-document.jsx',
+                    'src/random.jsx',
                 ],
                 dest: 'dist/scripts.jsx',
             },
@@ -26,7 +27,7 @@ module.exports = function (grunt) {
             target: {
                 files: [{
                     cwd: '.',
-                    src: '*.jsx',
+                    src: 'src/*.jsx',
                     dest: 'dist/scripts.jsx'
                 }]
             }
@@ -34,8 +35,18 @@ module.exports = function (grunt) {
         clean: {
             dist: ['dist/scripts.jsx'],
         },
+        watch: {
+            scripts: {
+                files: ['src/*.jsx'],
+                tasks: ['default'],
+                options: {
+                    spawn: false,
+                },
+            },
+        },
     });
 
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-clean');

@@ -12,4 +12,6 @@ Document.prototype.exportImage || (Document.prototype.exportImage = function(fil
 
         this.exportFile(ExportFormat.JPG, filePath);
     }
+
+    return filePath;
 });
