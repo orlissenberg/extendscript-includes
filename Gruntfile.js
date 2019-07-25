@@ -1,22 +1,31 @@
 module.exports = function (grunt) {
+    const concatSources = [
+        'src/application-notifications.jsx',
+        'src/array-index-of.jsx',
+        'src/document-export-image.jsx',
+        'src/document-copy-metadata-to-export.jsx',
+        'src/dotenv.jsx',
+        'src/json.jsx',
+        'src/page-copy-items-to-document.jsx',
+        'src/random.jsx',
+    ];
+
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         concat: {
-            options: {
-                separator: ';',
-            },
             dist: {
-                src: [
-                    'src/application-notifications.jsx',
-                    'src/array-index-of.jsx',
-                    'src/document-export-image.jsx',
-                    'src/document-copy-metadata-to-export.jsx',
-                    'src/dotenv.jsx',
-                    'src/json.jsx',
-                    'src/page-copy-items-to-document.jsx',
-                    'src/random.jsx',
-                ],
+                options: {
+                    separator: ';',
+                },
+                src: concatSources,
+                dest: 'dist/scripts.jsx',
+            },
+            dev: {
+                options: {
+                    separator: '\n\n',
+                },
+                src: concatSources,
                 dest: 'dist/scripts.jsx',
             },
         },
@@ -51,4 +60,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.registerTask('default', ['clean', 'concat', 'uglify']);
+    grunt.registerTask('dev', ['clean', 'concat:dev']);
 };
